@@ -25,44 +25,65 @@
 
 <div class="tab-content">
     <div class="tab-pane active" id="itsm" >
-        <div class=" col-md-10" style="
+        <div class=" col-md-6" style="
     padding: 10px;
     padding-left: 20px;
     background-color: #f5f5f5;
-    margin-left: 10%;
+    margin-left: 20%;
     margin-top: 3%;
 ">
-            <h6 class="col-xs-12" style="
-    color: #1c6a98;
-    font-size: 20px;
-    font-weight: bold;
-"> Configure ticketing tool...</h6>
 
-        <form method="post" action="/tc_tool/">
-            {% csrf_token %}
 
-            <div class="col-md-12">
-                <div class="col-md-6">Select Tool</div>
-                <div class="col-md-6">
-                     <select name="toolnames" class="col-md-6">
-                        {% for entry in tools_list %}
-                            <option value="{{ entry.toolName }}">{{entry.toolName}}</option>
-                         {% endfor %}
-                    </select>
-                </div>
+        <form method="post" role="form" action="/tc_tool/" class="text-info">
+        {% csrf_token %}
+            <div class="form-group row">
+             <h6 class="col-md-12" style="font-size: 20px;font-weight: bold;"> Configure ticketing tool...</h6>
+         </div>
+            <div class="form-group row">
+            <label for="select-tool"  class="control-label  col-md-2">Select Tool</label>
+            <div class="col-md-5 offset-4">
+            <select class="custom-select" name="select-tool">
+                {% for entry in tools_list %}
+                    <option  class="form-control" name="select-tool" value="{{ entry.toolName }}">{{entry.toolName}}</option>
+                {% endfor %}
+            </select>
             </div>
-            <div class = "col-md-12" style="padding-top: 10px;">
-                <div class="col-md-6">Username</div>
-                <div class="col-md-6"> <input type="text" align="center" name="username"></div>
+        </div>
+            <div class="form-group row">
+            <label for="endpoint" class="control-label col-sm-2">EndPoint</label>
+            <div class="col-sm-5 offset-4">
+                <input type="text" class="form-control" name="endpoint">
             </div>
-            <div class = "col-md-12" style="padding-top: 10px;">
-                <div class="col-md-6">Athentication Type</div>
+        </div>
+
+            <div class="form-group row">
+            <label for="auth-type" class="control-label col-sm-2">Authentication Type</label>
+            <div class="col-sm-5 offset-4 form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="auth-type" id="radio1" value="Password">
+                <label class="form-check-label" for="radio1">Password</label>
+                <div class="offset-1"></div>
+                <input class="form-check-input" type="radio" name="auth-type" id="radio2" value="Token">
+                <label class="form-check-label" for="radio2">Token</label>
             </div>
-            <div class = "col-md-4"><input class="col-md-4 float-right" type="submit" value="Submit" /></div>
-
-
-
-        </form>
+        </div>
+            <div class="form-group row">
+            <label for="username" class="control-label col-sm-2">Username</label>
+            <div class="col-sm-5 offset-4">
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+        </div>
+            <div class="form-group row">
+            <label for="password" class="control-label col-md-2">Password</label>
+            <div class="col-md-5 offset-4">
+                <input type="password" class="form-control" name="password">
+            </div>
+        </div>
+            <div class="form-group row">
+            <div class="offset-md-5 col-md-7 pull-right">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+</form>
         </div>
     </div>
     <div class="tab-pane" id="users">Users Page</div>
